@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+
+<head>
+  <title>AngularJS Todo List</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #fff;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .task-input {
+      width: 200px;
+      margin-right: 10px;
+    }
+
+    .edit-input {
+      width: 150px;
+    }
+
+    .button-group {
+      display: flex;
+    }
+
+    .button-group button {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+
+<body bgcolor="white" text="Black">
+  <h1> <marquee> Program #6 </marquee> </h1>
+  <center><h2> Sri Venkateshwara College of Engineering </h2>
+  <h3>Dept. of InformationScience and Engineering</h3>
+   <h4>Angular JS to create to-do list</h4>
+   </center> <hr>
+
+<body ng-controller="TodoController">
+
+  <h2>AngularJS Todo List</h2>
+
+  <form ng-submit="addTask()">
+    <input type="text" ng-model="newTask" class="task-input" placeholder="Add a new task..." required />
+    <button type="submit">Add</button>
+  </form>
+
+  <ul>
+    <li ng-repeat="task in tasks">
+      <span ng-show="!task.editing">{{ task.name }}</span>
+      <input ng-show="task.editing" ng-model="task.updatedName" class="edit-input" />
+      <div class="button-group">
+        <button ng-click="editTask(task)">Edit</button>
+        <button ng-click="deleteTask(task)">Delete</button>
+      </div>
+    </li>
+  </ul>
+
+  <script>
+    var app = angular.module('todoApp', []);
+
+    app.controller('TodoController', function ($scope) {
+      // Default tasks
+      $scope.tasks = [
+        { name: 'Task 1', editing: false },
+        { name: 'Task 2', editing: false },
+        { name: 'Task 3', editing: false }
+      ];
+
+      $scope.newTask = '';
+
+      $scope.addTask = function () {
+        if ($scope.newTask) {
+          $scope.tasks.push({ name: $scope.newTask, editing: false });
+          $scope.newTask = '';
+        }
+      };
+
+      $scope.editTask = function (task) {
+        if (task.editing) {
+          task.name = task.updatedName;
+        }
+        task.editing = !task.editing;
+      };
+
+      $scope.deleteTask = function (task) {
+        var index = $scope.tasks.indexOf(task);
+        $scope.tasks.splice(index, 1);
+      };
+    });
+  </script>
+</body>
+
+</html>
