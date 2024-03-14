@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+  <title>Student Details</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<h1> <marquee> Program #5 </marquee> </h1>
+<center><h2> Sri Venkateshwara College of Engineering </h2>
+<h3>Dept. of Information Science and Engineering</h3>
+ <h4>Angular JS code to display the details of the students with CGPA on a Web Page</h4>
+ </center> <hr>
+
+<div ng-controller="StudentController">
+  <h2>Student Details</h2>
+
+  <label for="numberOfStudents">Enter the number of students:</label>
+  <input type="number" id="numberOfStudents" ng-model="numberOfStudents" min="1" required>
+  <button ng-click="generateStudentDetails()">Generate Details</button>
+
+  <div ng-show="studentDetails.length">
+    <h3>Student Count: {{ studentDetails.length }}</h3>
+    <ul>
+      <li ng-repeat="student in studentDetails">
+        <strong>{{ student.name }}</strong> - CGPA: {{ student.cgpa }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  var app = angular.module('studentApp', []);
+
+  app.controller('StudentController', function($scope) {
+    $scope.studentDetails = [];
+    $scope.numberOfStudents = 0;
+
+    // Static student details (for demonstration purposes)
+    var staticStudentDetails = [
+      { name: 'John Doe', cgpa: '3.8' },
+      { name: 'Jane Smith', cgpa: '3.5' },
+      { name: 'Bob Johnson', cgpa: '3.2' },
+      // Add more student details as needed
+    ];
+
+    $scope.generateStudentDetails = function() {
+      $scope.studentDetails = [];
+
+      // Use either static or dynamically generated student details
+      var detailsToUse = staticStudentDetails;
+
+      for (var i = 0; i < $scope.numberOfStudents && i < detailsToUse.length; i++) {
+        $scope.studentDetails.push(detailsToUse[i]);
+      }
+    };
+  });
+</script>
+
+</body>
+</html>
