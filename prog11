@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+  <title>Student Details</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<h1> <marquee> Program #11 </marquee> </h1>
+<center><h2> Sri Venkateshwara College of Engineering </h2>
+<h3>Dept. of InformationScience and Engineering</h3>
+ <h4>Angular JS code to maintain to convert the student details to uppercase</h4>
+ </center> <hr>
+
+<body ng-controller="StudentController as ctrl">
+  <h2>Student Details</h2>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Roll Number</th>
+    </tr>
+    <tr ng-repeat="student in ctrl.students">
+      <td>{{ student.name | uppercase }}</td>
+      <td>{{ student.rollNumber | uppercase }}</td>
+    </tr>
+  </table>
+</body>
+</html>
+<script>
+  var app = angular.module('studentApp', []);
+
+app.controller('StudentController', function () {
+  var ctrl = this;
+
+  ctrl.students = [
+    { name: 'John Doe', rollNumber: 'A123' },
+    { name: 'Jane Smith', rollNumber: 'B456' },
+    // Add more student details as needed
+  ];
+});
+</script>
