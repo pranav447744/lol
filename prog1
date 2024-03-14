@@ -1,0 +1,31 @@
+<!DOCTYPE html> 
+<html ng-app="myApp">
+<head>
+<title>Getting Started with AngularJS</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body bgcolor="black" text="White">
+<h1> <marquee> Program #1 </marquee> </h1>
+<center><h2> Sri Venkateshwara College of Engineering </h2>
+<h3>Dept. of InformationScience and Engineering</h3>
+ <h4>Angular JS code to Display a Message on a Web Page</h4>
+ </center> <hr>
+ 
+<div ng-controller="MyCtrl">
+<h1>Welcome to AngularJS!</h1>
+<p>Dynamic Content Binding Example:</p>
+<p>Enter your First name: <input type="text" ng-model="fname"></p>
+<p>Enter your  Second name: <input type="text" ng-model="lname"></p>
+
+<p>Hello, {{ fname }} {{lname}}!</p>
+</div>
+
+<script> angular.module('myApp', [])
+.controller('MyCtrl', function($scope) {
+// Initialize scope variables
+$scope.fname = "User";
+$scope.lname = "User";
+});
+</script>
+</body>
+</html>
